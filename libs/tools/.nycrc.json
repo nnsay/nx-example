@@ -1,0 +1,4 @@
+{
+  "report-dir": "../../coverage/tools",
+  "temp-dir": "../../.nyc_output/tools"
+}

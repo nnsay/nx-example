@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 import { nxE2EPreset } from '@nx/cypress/plugins/cypress-preset';
 import { defineConfig } from 'cypress';
-import { nxE2EStorybookPreset } from '@nx/storybook/presets/cypress';
+// import { nxE2EStorybookPreset } from '@nx/storybook/presets/cypress';
 
-console.log(nxE2EPreset(__filename, { cypressDir: 'cypress' }));
-console.log(nxE2EStorybookPreset(__dirname));
+// console.log(nxE2EPreset(__filename, { cypressDir: 'cypress' }));
+// console.log(nxE2EStorybookPreset(__dirname));
 export default defineConfig({
   e2e: {
     //
