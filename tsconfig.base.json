@@ -15,6 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@myorg/common": ["libs/common/src/index.ts"],
       "@nnsay/tools": ["libs/tools/src/index.ts"]
     }
   },
