@@ -1,0 +1,26 @@
+{
+  "name": "demo-deploy",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/demo-deploy/src",
+  "projectType": "application",
+  "targets": {
+    "deploy": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": ["echo deploy demo"]
+      },
+      "dependsOn": [
+        {
+          "projects": "dependencies",
+          "target": "build"
+        },
+        {
+          "projects": "dependencies",
+          "target": "deploy"
+        }
+      ]
+    }
+  },
+  "implicitDependencies": ["demo", "infra"],
+  "tags": []
+}

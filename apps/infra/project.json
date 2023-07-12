@@ -1,0 +1,15 @@
+{
+  "name": "infra",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/infra/src",
+  "projectType": "application",
+  "targets": {
+    "deploy": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": ["echo infra deploy"]
+      }
+    }
+  },
+  "tags": []
+}
