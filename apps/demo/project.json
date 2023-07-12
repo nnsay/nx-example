@@ -5,39 +5,40 @@
   "projectType": "application",
   "targets": {
     "build": {
-      "executor": "@nx/esbuild:esbuild",
+      "executor": "@nx/vite:build",
       "outputs": ["{options.outputPath}"],
       "defaultConfiguration": "production",
       "options": {
-        "platform": "node",
-        "outputPath": "dist/apps/demo",
-        "format": ["cjs"],
-        "bundle": false,
-        "main": "apps/demo/src/main.ts",
-        "tsConfig": "apps/demo/tsconfig.app.json",
-        "assets": ["apps/demo/src/assets"],
-        "generatePackageJson": true,
-        "esbuildOptions": {
-          "sourcemap": true,
-          "outExtension": {
-            ".js": ".js"
-          }
-        }
+        "outputPath": "dist/apps/demo"
       },
       "configurations": {
-        "development": {},
+        "development": {
+          "mode": "development"
+        },
         "production": {
-          "esbuildOptions": {
-            "sourcemap": false,
-            "outExtension": {
-              ".js": ".js"
-            }
-          }
+          "mode": "production"
         }
       }
     },
     "serve": {
-      "executor": "@nx/js:node",
+      "executor": "@nx/vite:dev-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "demo:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "demo:build:development",
+          "hmr": true
+        },
+        "production": {
+          "buildTarget": "demo:build:production",
+          "hmr": false
+        }
+      }
+    },
+    "preview": {
+      "executor": "@nx/vite:preview-server",
       "defaultConfiguration": "development",
       "options": {
         "buildTarget": "demo:build"
@@ -51,25 +52,25 @@
         }
       }
     },
+    "test": {
+      "executor": "@nx/vite:test",
+      "outputs": ["coverage/apps/demo"],
+      "options": {
+        "passWithNoTests": true,
+        "reportsDirectory": "../../coverage/apps/demo"
+      }
+    },
     "lint": {
       "executor": "@nx/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["apps/demo/**/*.ts"]
+        "lintFilePatterns": ["apps/demo/**/*.{ts,tsx,js,jsx}"]
       }
     },
-    "test": {
-      "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+    "serve-static": {
+      "executor": "@nx/web:file-server",
       "options": {
-        "jestConfig": "apps/demo/jest.config.ts",
-        "passWithNoTests": true
-      },
-      "configurations": {
-        "ci": {
-          "ci": true,
-          "codeCoverage": true
-        }
+        "buildTarget": "demo:build"
       }
     }
   },
