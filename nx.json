@@ -47,6 +47,6 @@
       "!{projectRoot}/**/*.stories.@(js|jsx|ts|tsx|mdx)",
       "!{projectRoot}/.storybook/**/*"
     ],
-    "sharedGlobals": []
+    "sharedGlobals": ["{workspaceRoot}/.stylelintrc.json"]
   }
 }
