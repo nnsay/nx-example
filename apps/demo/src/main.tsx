@@ -1,5 +1,6 @@
 import { StrictMode } from 'react';
 import * as ReactDOM from 'react-dom/client';
+import * as common from '@myorg/common';
 
 import App from './app/app';
 
@@ -11,3 +12,4 @@ root.render(
     <App />
   </StrictMode>
 );
+console.log(common.common.name);
